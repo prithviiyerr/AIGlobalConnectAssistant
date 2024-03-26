@@ -1,0 +1,35 @@
+.main-content {
+    display: flex;
+    align-items: center; /* This will vertically center the items in the container */
+    justify-content: center; /* This will horizontally center the items */
+    margin: 20px; /* Add margin as necessary */
+    height: calc(100vh - 40px); /* Adjust height as needed, considering the margin */
+  }
+  
+  .text-box {
+    flex: 1; /* Allows the box to grow and take up half the space */
+    padding: 20px; /* Add padding as necessary */
+    margin-right: 10px; /* Adds a margin between the text box and image */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for depth */
+    margin-bottom: 10px;
+    /* Add additional styling for the text box */
+  }
+  
+  .image-box {
+    flex: 1; /* Allows the image box to grow and take up the remaining space */
+    margin-bottom: 10px;
+    /* Add styling for the image box if necessary */
+  }
+  
+  /* You might want to add media queries to ensure responsiveness on smaller screens */
+  @media (max-width: 768px) {
+    .main-content {
+      flex-direction: column; /* Stack the elements vertically on small screens */
+    }
+    .text-box,
+    .image-box {
+      margin: 0; /* Adjust margins for smaller screens */
+      padding: 10px; /* Adjust padding for smaller screens */
+      flex: none; /* Do not grow, use auto-sizing */
+    }
+  }

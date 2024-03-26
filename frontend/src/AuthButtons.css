@@ -1,0 +1,13 @@
+.auth-buttons {
+    display: flex;
+    justify-content: center; /* Align buttons horizontally to the center */
+    margin-top: 10px; /* Add margin at the top to separate from text/image */
+  }
+  
+  .auth-button {
+    font-size: 1.2em; /* Larger font size for larger button text */
+    padding: 10px 20px; /* Larger padding for a larger button */
+    margin: 0 10px; /* Space out buttons */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    /* Add more styling as needed (e.g., border, background-color) */
+  }
