@@ -5,7 +5,7 @@ function NavBar() {
   return (
     <nav>
       {/* Navigation Bar Markup */}
-      <h1>Multilingual Language Translation AI Chatbot</h1>
+      <h1>Language Translation Chatbot</h1>
       {/* Add more navigation items if needed */}
     </nav>
   );

@@ -1,17 +1,3 @@
-// import React from 'react';
-// import './AuthButtons.css'; // Make sure to import the CSS file
-
-// function AuthButtons() {
-//   return (
-//     <div className="auth-buttons">
-//       <button className="auth-button">Login</button>
-//       <button className="auth-button">Create Account</button>
-//     </div>
-//   );
-// }
-
-// export default AuthButtons;
-
 import React, { useState } from 'react';
 import CreateAccountModal from './CreateAccountModal';
 import LoginModal from './LoginModal';
@@ -42,10 +28,16 @@ function AuthButtons() {
   };
 
   return (
-    <div className="auth-buttons">
-      <button className="auth-button" onClick={handleOpenLoginModal}>Login</button>
-      <button className="auth-button" onClick={handleOpenCreateAccountModal}>Create Account</button>
-      
+    <div className="">
+      <div className='row'>
+        <div className='col-5'></div>
+          <a href='/inbox' className='btn auth-button border border-secondary col-2'>Login</a>
+        {/* <button className='btn auth-button col-2 border border-secondary' onClick={handleOpenLoginModal}>Login</button> */}
+      </div>
+      <div className='row'>
+        <div className='col-5'></div>
+        <button className='btn auth-button col-2 border border-secondary' onClick={handleOpenCreateAccountModal}>Create Account</button>
+      </div>
       {isLoginModalOpen && <LoginModal onClose={handleCloseLoginModal} />}
       {isCreateAccountModalOpen && <CreateAccountModal onClose={handleCloseCreateAccountModal} />}
     </div>

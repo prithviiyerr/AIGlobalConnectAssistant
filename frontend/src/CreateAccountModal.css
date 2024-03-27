@@ -15,7 +15,7 @@
     background: white;
     padding: 20px;
     border-radius: 10px;
-    width: 60%; /* Allow the width to be determined by the content */
+    width: 30%; /* Allow the width to be determined by the content */
     max-width: 700px; /* Maximum width of the modal */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for depth */
     position: relative; /* For positioning the close button absolutely */
