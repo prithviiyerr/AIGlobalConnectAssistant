@@ -9,7 +9,6 @@ function Home() {
         <MainContent />
       </div>
       <div className='row mt-5'>
-        <AuthButtons />
       </div>
     </div>
   );

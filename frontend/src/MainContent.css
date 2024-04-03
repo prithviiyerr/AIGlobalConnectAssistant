@@ -1,34 +1,93 @@
+.header {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: #fff; /* or any color you prefer */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+  text-align: center;
+  position: fixed; /* or 'static' if you don't want it fixed */
+  top: 0;
+  left: 0;
+  z-index: 10; /* to ensure it stays on top of other content */
+}
+
+.header h1 {
+  margin: 0;
+  color: #333; /* or any other color */
+  font-size: 1.5rem; /* or the size that fits your design */
+  font-weight: normal; /* adjust as needed */
+}
+/* Add this to your MainContent.css */
+.cta-button {
+  font-size: 1.2rem; /* Large text for visibility */
+  padding: 1rem 2rem; /* Larger padding for a bigger button */
+  background-color: #007bff; /* Or any color that fits your design scheme */
+  color: white;
+  border: none;
+  border-radius: 0.3rem; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #0056b3; /* A darker shade on hover */
+}
+
+
 .main-content {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 100vh; /* Make sure it takes the full height of the viewport */
+  padding: 2rem; /* Add some padding around */
+  background-color: #f4f7fa; /* A light grey background, similar to Yahoo's */
 }
 
 .text-box {
-  padding: 20px;
-  /* Add padding as necessary */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /* Optional: adds a shadow for depth */
-  border-radius: 20px;
-  border: 1px solid black;
+  max-width: 400px; /* Set a max-width to control the width of text */
+  padding: 2rem;
+  margin-right: 2rem; /* Add some space between text box and image */
+  background: white; /* A white background to make it pop out like a card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; /* Softer rounded corners */
+  text-align: left; /* Align text to the left for better readability */
 }
 
+h2 {
+  color: #333; /* Dark gray color for the text */
+  margin-bottom: 1.5rem; /* Space after the heading */
+}
 
+/* Image Box */
+.image-box {
+  flex-shrink: 0; /* Prevent the image from shrinking */
+  border-radius: 8px; /* Rounded corners for the image */
+  overflow: hidden; /* Ensures the rounded corners are visible */
+}
 
-/* You might want to add media queries to ensure responsiveness on smaller screens */
+img {
+  width: auto;
+  height: 100%;
+  max-height: 400px; /* Set a max-height for the image */
+  object-fit: cover; /* Ensures the image covers the area nicely */
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .main-content {
     flex-direction: column;
-    /* Stack the elements vertically on small screens */
+    justify-content: flex-start;
+    padding-top: 100px; /* Add some space on the top */
   }
 
   .text-box,
   .image-box {
-    margin: 0;
-    /* Adjust margins for smaller screens */
-    padding: 10px;
-    /* Adjust padding for smaller screens */
-    flex: none;
-    /* Do not grow, use auto-sizing */
+    max-width: none;
+    margin: 0 auto; /* Center align on small screens */
+    margin-bottom: 1rem; /* Add some space below each section */
+  }
+
+  img {
+    max-height: 300px; /* Smaller image for smaller screens */
   }
 }

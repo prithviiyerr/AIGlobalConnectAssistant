@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CreateAccountModal from './CreateAccountModal';
 import LoginModal from './LoginModal';
+
 import './AuthButtons.css';
 
 function AuthButtons() {
@@ -28,18 +29,9 @@ function AuthButtons() {
   };
 
   return (
-    <div className="">
-      <div className='row'>
-        <div className='col-5'></div>
-          <a href='/inbox' className='btn auth-button border border-secondary col-2'>Login</a>
-        {/* <button className='btn auth-button col-2 border border-secondary' onClick={handleOpenLoginModal}>Login</button> */}
-      </div>
-      <div className='row'>
-        <div className='col-5'></div>
-        <button className='btn auth-button col-2 border border-secondary' onClick={handleOpenCreateAccountModal}>Create Account</button>
-      </div>
+    <div className="auth-buttons-container">
+      <button className='auth-button login-button' onClick={handleOpenLoginModal}>Login</button>
       {isLoginModalOpen && <LoginModal onClose={handleCloseLoginModal} />}
-      {isCreateAccountModalOpen && <CreateAccountModal onClose={handleCloseCreateAccountModal} />}
     </div>
   );
 }
