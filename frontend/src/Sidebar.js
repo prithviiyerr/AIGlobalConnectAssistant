@@ -2,14 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
 
-function Sidebar() {
+function Sidebar({ onCompose }) {
   return (
     <div className="sidebar">
       <ul className="nav flex-column">
         <li className="nav-item">
-          <NavLink to="/compose" className="nav-link" activeClassName="active">
-            <i className="fas fa-pen mr-2"></i>Compose
-          </NavLink>
+          <button className="nav-link" onClick={onCompose}>
+            Compose
+          </button>
         </li>
         <li className="nav-item">
           <NavLink to="/chatbot" className="nav-link" activeClassName="active">

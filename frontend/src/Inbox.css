@@ -1,0 +1,13 @@
+.sidebar {
+    width: 200px; /* Adjust width as needed */
+    float: left;
+    /* Rest of your styles */
+  }
+  
+  /* Clearfix for the container if needed */
+  .container::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  

@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import './EmailTable.css';
 
-function EmailTable({ data }) {
+function EmailTable({ data, onEmailClick }) { // Accept the onEmailClick prop
     const [searchTerm, setSearchTerm] = useState('');
-
-
 
     const handleChange = (e) => {
         setSearchTerm(e.target.value);
     };
+
+    // Filter data based on searchTerm
+    const filteredData = data.filter(
+        item =>
+            item.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.body.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div className="email-table">
@@ -23,10 +28,10 @@ function EmailTable({ data }) {
                 <thead>
                 </thead>
                 <tbody>
-                    {data.map(item => (
-                        <tr key={item.subject}>
+                    {filteredData.map((item, index) => ( // Use filteredData here
+                        <tr key={index} onClick={() => onEmailClick(item)}> {/* Add the click handler */}
                             <td>
-                            <input type="checkbox" className="form-check-input mt-3" />
+                                <input type="checkbox" className="form-check-input mt-3" />
                             </td>
                             <td>
                                 <div className='container'>
@@ -37,9 +42,6 @@ function EmailTable({ data }) {
                                         {item.body}
                                     </div>
                                 </div>
-
-
-
                             </td>
                         </tr>
                     ))}
