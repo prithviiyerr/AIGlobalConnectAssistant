@@ -53,14 +53,21 @@
 }
 
 .email-detail-body {
-    padding: 1rem;
-    /* Padding for the body content */
+    padding: .5rem;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 1rem;
+    
 }
+
+.email-actions { /* Add this class for the actions section */
+    padding: 1rem;
+    background: #f8f9fa; /* Background color for the action section */
+  }
 
 .email-detail-body p {
     margin-bottom: 0.5rem;
     /* Spacing between paragraphs */
-}
+} 
 
 .move-to-trash {
     background-color: #dc3545;
@@ -71,6 +78,7 @@
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;
+    
 }
 
 .move-to-trash:hover {

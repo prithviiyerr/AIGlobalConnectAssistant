@@ -1,0 +1,13 @@
+/* Use similar styles as Inbox.css to maintain consistency */
+.email-list {
+  margin-left: 200px; /* Adjust based on the width of your sidebar */
+  padding: 1rem; /* Same as your inbox padding */
+}
+
+.email-item {
+  border-bottom: 1px solid #dee2e6; /* Add a line after each email item */
+  padding: 1rem 0; /* Spacing around email content */
+  margin-bottom: 1rem; /* Space between email items */
+}
+
+/* Additional styles as needed */

@@ -1,14 +1,14 @@
 import React from 'react';
 import './EmailDetailModal.css';
 
-function EmailDetailModal({ email, onClose, visible, onMoveToTrash }) {
-  if (!visible || !email) return null; // Also make sure to check that email is not null
+function EmailDetailModal({ email, onClose, visible, onMoveToTrash, deleteLabel }) {
+  if (!visible || !email) return null;
 
   const handleMoveToTrash = () => {
-    // Placeholder for trash logic
-    console.log('Email moved to trash:', email);
-    onMoveToTrash(email); // This will be passed down from the parent component
-    onClose(); // Close the modal after moving to trash
+    if (onMoveToTrash) {
+      onMoveToTrash(email);
+    }
+    onClose();
   };
 
   return (
@@ -19,10 +19,12 @@ function EmailDetailModal({ email, onClose, visible, onMoveToTrash }) {
           <button className="email-detail-close-button" onClick={onClose}>X</button>
         </div>
         <div className="email-detail-body">
-          <p><strong>From:</strong> {email.to}</p>
+          <p><strong>From:</strong> {email.from}</p>
           <p><strong>Subject:</strong> {email.subject}</p>
           <p>{email.body}</p>
-          <button className="move-to-trash" onClick={handleMoveToTrash}>Move to Trash</button>
+          <button className="delete-button" onClick={handleMoveToTrash}>
+            {deleteLabel || 'Move to Trash'}
+          </button>
         </div>
       </div>
     </div>
