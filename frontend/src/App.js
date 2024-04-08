@@ -5,6 +5,7 @@ import Home from './Home';
 import Inbox from './Inbox';
 import Trash from './Trash';
 import ChatbotDialogue from './ChatbotDialogue';
+import Sent from './Sent';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/inbox" element={<Inbox/>}/>
         <Route path="/trash" element={<Trash />} />
         <Route path="/chatbot" element={<ChatbotDialogue/>}/>
+        <Route path="/sent" element={<Sent />} />
       </Routes>
     </Router>
   );

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import EmailTable from './EmailTable';
 import EmailDetailModal from './EmailDetailModal';
-import './Trash.css'; 
+import './Trash.css';
 
 function Trash() {
     const [emailDetailVisible, setEmailDetailVisible] = useState(false);
@@ -30,7 +30,13 @@ function Trash() {
         console.log('Permanently deleting email:', emailToDelete);
         // Close the modal after deleting
         closeEmailDetailModal();
-    };    
+    };
+
+    const handleRestore = (email) => {
+        // Logic to restore the email from the trash
+        console.log("Email restored:", email);
+        // typically update the state here and remove the email from the trashedEmails
+    };
 
 
     return (
@@ -44,6 +50,8 @@ function Trash() {
                     visible={emailDetailVisible}
                     onMoveToTrash={handlePermanentDelete} // You will need to define this function
                     deleteLabel="Permanently Delete" // Custom label for the delete button
+                    onRestore={handleRestore}
+                    isTrashView={true}
                 />
             )}
         </div>

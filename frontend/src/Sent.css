@@ -1,0 +1,10 @@
+/* Sent.css */
+.email-item {
+    text-align: left; /* Aligns text to the left */
+    padding: 10px; /* Adds some padding inside your email item divs */
+  }
+  
+  .email-subject {
+    font-weight: bold; /* Makes the subject bold */
+  }
+  
