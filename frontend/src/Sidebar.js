@@ -27,7 +27,7 @@ function Sidebar({ onCompose }) {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/draft" className="nav-link" activeClassName="active">
+          <NavLink to="/drafts" className="nav-link" activeClassName="active">
             <i className="fas fa-file-alt mr-2"></i>Draft
           </NavLink>
         </li>
