@@ -2,10 +2,12 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import EmailTable from './EmailTable';
+import ComposeModal from './ComposeModal';
 import EmailDetailModal from './EmailDetailModal'; 
-import './Drafts.css'; // Ensure you have the CSS for drafts
+import './Drafts.css';
 
 function Drafts() {
+    const [composeModalVisible, setComposeModalVisible] = useState(false);
     const [emailDetailVisible, setEmailDetailVisible] = useState(false);
     const [selectedEmail, setSelectedEmail] = useState(null);
 
@@ -14,6 +16,9 @@ function Drafts() {
         { subject: "Drafted Email #1 Subject", body: "Drafted Email #1 Body" },
         
     ];
+
+    const openComposeModal = () => setComposeModalVisible(true);
+    const closeComposeModal = () => setComposeModalVisible(false);
 
     const openEmailDetailModal = (email) => {
         setSelectedEmail(email);
@@ -28,6 +33,8 @@ function Drafts() {
     return (
         <div className='container mt-5'>
             <Sidebar />
+            <Sidebar onCompose={openComposeModal} />
+            <ComposeModal onClose={closeComposeModal} visible={composeModalVisible} />
             <EmailTable data={draftEmails} onEmailClick={openEmailDetailModal} />
             {selectedEmail && emailDetailVisible && (
                 <EmailDetailModal
