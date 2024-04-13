@@ -1,24 +1,19 @@
 import React, { useState } from 'react';
 import './ChatbotDialogue.css';
 import Sidebar from './Sidebar';
-import ComposeModal from './ComposeModal';
 
 function ChatbotDialogue() {
-  const [composeModalVisible, setComposeModalVisible] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
-
-  const openComposeModal = () => setComposeModalVisible(true);
-  const closeComposeModal = () => setComposeModalVisible(false);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleSendMessage = (text = inputValue) => {
-    if (text.trim() !== '') {
+  const handleSendMessage = () => {
+    if (inputValue.trim() !== '') {
       const newMessage = {
-        text: text,
+        text: inputValue,
         sender: 'user'
       };
       setMessages([...messages, newMessage]);
@@ -26,50 +21,25 @@ function ChatbotDialogue() {
     }
   };
 
-  const quickReplies = [
-    { text: 'Help me compose an email' },
-    { text: 'Help me compose an email response' },
-    { text: 'Help me understand an email (tone-sensitive)' }
-  ];
-
   return (
     <div className="chatbot-dialogue">
-      <Sidebar />
-      <Sidebar onCompose={openComposeModal} />
-      <ComposeModal onClose={closeComposeModal} visible={composeModalVisible} />
+        <Sidebar/>
       <div className="chat-container">
-        <div className="chat-header">
-          Hi, how can I help you?
-        </div>
-        <div className="messages-container">
-          {messages.map((message, index) => (
-            <div key={index} className={`message ${message.sender}`}>
-              {message.text}
-            </div>
-          ))}
-        </div>
-        <div className="quick-reply-container">
-          {quickReplies.map((reply, index) => (
-            <button key={index} className="quick-reply" onClick={() => handleSendMessage(reply.text)}>
-              {reply.text}
-            </button>
-          ))}
-        </div>
+        {messages.map((message, index) => (
+          <div key={index} className={`message ${message.sender}`}>
+            {message.text}
+          </div>
+        ))}
       </div>
-      <div className="input-group chat-input-group">
+      <div className="input-group mb-3">
         <input
           type="text"
-          className="form-control message-input"
-          placeholder="Message the Chatbot..."
+          className="form-control message-box"
+          placeholder="Type your message..."
           value={inputValue}
           onChange={handleInputChange}
-          onKeyPress={event => {
-            if (event.key === 'Enter') {
-              handleSendMessage();
-            }
-          }}
         />
-        <button className="btn send-button" onClick={handleSendMessage}>Send</button>
+        <button className="btn btn-primary" onClick={handleSendMessage}>Send</button>
       </div>
     </div>
   );

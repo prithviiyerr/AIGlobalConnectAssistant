@@ -19,6 +19,7 @@
     max-width: 700px; /* Maximum width of the modal */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for depth */
     position: relative; /* For positioning the close button absolutely */
+    text-align: center;
   }
   
   .modal-close-button {
@@ -48,4 +49,8 @@
     color: white;
     border: none;
     border-radius: 5px;
+  }
+
+  .error-message {
+    color: red;
   }

@@ -1,13 +1,14 @@
 # Email Chatbot
 
-# To start up the application you need to start both the backend and frontend servers below.
-# If you run into any issues doing that, you probably need to install some stuff. The main
-# ones I know are making sure you have django, react, cors (pip install django-cors-headers) installed. There may be other ones
-# that I'm not sure of that you'll just have to find.
+# Potential installs:
+# pip install Flask, python -m pip install "pymongo[srv]"
+
+# port 5000 for flask, port 3000 for react
 
 # Start backend (from root directory):
-cd backend
-python manage.py runserver
+cd flask-backend
+source venv/bin/activate
+python server.py
 # Start frontend (from root directory):
 cd frontend
 npm start
@@ -16,8 +17,6 @@ npm start
 # it that also says test. If you are missing the bottom test, check the console for errors. If it is a CORS error, make sure
 # you installed cors properly, shut down both backend and frontend servers, exit out the the webpage, clear your cache, and
 # start everything back up again.
-
-# If stuff is still breaking, make sure you are using port 3000 for react and port 8000 for django.
 
 ## Getting started
 

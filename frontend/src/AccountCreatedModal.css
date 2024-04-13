@@ -1,0 +1,54 @@
+.account-created-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Dim the background */
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    z-index: 1000; /* Make sure it's above other content */
+  }
+  
+  .account-created-content {
+    background: rgb(163, 233, 188);
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%; /* Allow the width to be determined by the content */
+    max-width: 700px; /* Maximum width of the modal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for depth */
+    position: relative; /* For positioning the close button absolutely */
+    text-align: center;
+  }
+  
+ 
+  .account-created-button {
+    background: rgb(113, 198, 144);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    /* background: none; */
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* Style the form inside the modal */
+  /* .modal-content form {
+    display: flex;
+    flex-direction: column;
+  } */
+  
+  /* .modal-content form input,
+  .modal-content form button {
+    margin-top: 10px; /* Space out form items */
+    /* padding: 10px; /* Padding inside inputs and button */
+  /* } */
+  
+   /* .modal-content form button {
+    background: #007bff; /* Button color */
+    /* color: white;
+    border: none;
+    border-radius: 5px;
+  } */

@@ -3,9 +3,10 @@ import './MainContent.css'; // Make sure to import the corresponding CSS file
 import AuthButtons from './AuthButtons'; // Import AuthButtons component
 import teamImage from './images/image.jpg';
 import CreateAccountModal from './CreateAccountModal';
-
+import AccountCreatedModal from './AccountCreatedModal';
 function MainContent() {
   const [isCreateAccountModalOpen, setIsCreateAccountModalOpen] = useState(false);
+  const [isAccountCreated, setIsAccountCreated] = useState(false);
 
   const handleOpenCreateAccountModal = () => {
     setIsCreateAccountModalOpen(true);
@@ -14,6 +15,11 @@ function MainContent() {
   const handleCloseCreateAccountModal = () => {
     setIsCreateAccountModalOpen(false);
   };
+
+  const handleCloseAccountCreatedModal = () => {
+    setIsAccountCreated(false);
+  };
+
   return (
     <>
       <header className="header">
@@ -29,7 +35,15 @@ function MainContent() {
           <img src={teamImage} alt="team" />
         </div>
       </main>
-      {isCreateAccountModalOpen && <CreateAccountModal onClose={handleCloseCreateAccountModal} />}
+      {isCreateAccountModalOpen && (
+      <CreateAccountModal onClose={handleCloseCreateAccountModal} 
+      handleAccountCreated={() => {
+        setIsCreateAccountModalOpen(false);
+        setIsAccountCreated(true);
+      }}
+      />
+    )}
+      {isAccountCreated && <AccountCreatedModal onClose={handleCloseAccountCreatedModal} />}
     </>
   );
 }

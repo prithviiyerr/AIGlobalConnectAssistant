@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import EmailTable from './EmailTable';
 import ComposeModal from './ComposeModal';
-import EmailDetailModal from './EmailDetailModal';
+import EmailDetailModal from './EmailDetailModal'; 
 import './Inbox.css';
 
 function Inbox() {
@@ -34,11 +34,12 @@ function Inbox() {
 
     return (
         <div className='container mt-5'>
-            <Sidebar onCompose={openComposeModal} />
-            <EmailTable data={dummyData} onEmailClick={openEmailDetailModal} />
+            <Sidebar onCompose = {openComposeModal}/>
+            <EmailTable data={dummyData} onEmailClick={openEmailDetailModal}/>
             <ComposeModal onClose={closeComposeModal} visible={composeModalVisible} />
             <EmailDetailModal email={selectedEmail} onClose={closeEmailDetailModal} visible={emailDetailVisible} />
         </div>
     );
 }
+
 export default Inbox;

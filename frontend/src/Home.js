@@ -1,6 +1,5 @@
 import React from 'react';
 import MainContent from './MainContent';
-import AuthButtons from './AuthButtons';
 
 function Home() {
   return (

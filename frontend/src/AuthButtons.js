@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import CreateAccountModal from './CreateAccountModal';
+// import CreateAccountModal from './CreateAccountModal';
 import LoginModal from './LoginModal';
 
 import './AuthButtons.css';
 
 function AuthButtons() {
-  const [isCreateAccountModalOpen, setIsCreateAccountModalOpen] = useState(false);
+  // const [isCreateAccountModalOpen, setIsCreateAccountModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   // Function to open the create account modal
-  const handleOpenCreateAccountModal = () => {
-    setIsCreateAccountModalOpen(true);
-  };
+  // const handleOpenCreateAccountModal = () => {
+  //   setIsCreateAccountModalOpen(true);
+  // };
 
   // Function to close the create account modal
-  const handleCloseCreateAccountModal = () => {
-    setIsCreateAccountModalOpen(false);
-  };
+  // const handleCloseCreateAccountModal = () => {
+  //   setIsCreateAccountModalOpen(false);
+  // };
 
   // Function to open the login modal
   const handleOpenLoginModal = () => {
@@ -31,11 +31,12 @@ function AuthButtons() {
   return (
     <div className="auth-buttons-container">
       <button className='auth-button login-button' onClick={handleOpenLoginModal}>Login</button>
-      {isLoginModalOpen && <LoginModal onClose={handleCloseLoginModal} />}
+      {isLoginModalOpen && <LoginModal onClose={handleCloseLoginModal}/>}
     </div>
   );
 }
 
 export default AuthButtons;
+
 
 
