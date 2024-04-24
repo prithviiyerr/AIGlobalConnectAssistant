@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import EmailTable from './EmailTable';
+import ComposeModal from './ComposeModal';
 import EmailDetailModal from './EmailDetailModal';
 import './Trash.css';
 
 function Trash() {
+    const [composeModalVisible, setComposeModalVisible] = useState(false);
     const [emailDetailVisible, setEmailDetailVisible] = useState(false);
     const [selectedEmail, setSelectedEmail] = useState(null);
 
@@ -14,6 +16,10 @@ function Trash() {
         { id: 2, subject: "Your Order Confirmation", body: "Confirmation for your recent order. Thank you for shopping with us." },
         // ... more trashed emails ...
     ];
+
+
+    const openComposeModal = () => setComposeModalVisible(true);
+    const closeComposeModal = () => setComposeModalVisible(false);
 
     const openEmailDetailModal = (email) => {
         setSelectedEmail(email);
@@ -42,6 +48,8 @@ function Trash() {
     return (
         <div className='container mt-5'>
             <Sidebar />
+            <Sidebar onCompose={openComposeModal} />
+            <ComposeModal onClose={closeComposeModal} visible={composeModalVisible} />
             <EmailTable data={trashedEmails} onEmailClick={openEmailDetailModal} />
             {selectedEmail && emailDetailVisible && (
                 <EmailDetailModal
