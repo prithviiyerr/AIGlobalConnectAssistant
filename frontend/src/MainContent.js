@@ -4,7 +4,7 @@ import AuthButtons from './AuthButtons'; // Import AuthButtons component
 import teamImage from './images/image.jpg';
 import CreateAccountModal from './CreateAccountModal';
 import AccountCreatedModal from './AccountCreatedModal';
-function MainContent() {
+function MainContent({ userId, setUserId }) {
   const [isCreateAccountModalOpen, setIsCreateAccountModalOpen] = useState(false);
   const [isAccountCreated, setIsAccountCreated] = useState(false);
 
@@ -24,7 +24,7 @@ function MainContent() {
     <>
       <header className="header">
         <h1 className="header-title">Multilingual Language Translation AI Chatbot</h1>
-        <AuthButtons></AuthButtons>
+        <AuthButtons userId={userId} setUserId={setUserId}/>
       </header>
       <main className="main-content">
         <div className="text-box">

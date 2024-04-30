@@ -73,7 +73,7 @@ function Sidebar({ onCompose }) {
         </li>
         <li className="nav-item">
           <NavLink to="/drafts" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-            <i className="fas fa-file-alt mr-2"></i>Draft
+            <i className="fas fa-file-alt mr-2"></i>Drafts
           </NavLink>
         </li>
         <li className="nav-item">

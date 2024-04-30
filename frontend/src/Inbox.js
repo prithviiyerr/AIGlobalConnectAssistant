@@ -3,10 +3,11 @@ import Sidebar from './Sidebar';
 import EmailTable from './EmailTable';
 import ComposeModal from './ComposeModal';
 import EmailDetailModal from './EmailDetailModal'; 
+import { useNavigate } from 'react-router-dom';
 import './Inbox.css';
 
-function Inbox() {
-
+function Inbox({ userId, setUserId, showLogout, setShowLogout }) {
+    const navigate = useNavigate();
     const [composeModalVisible, setComposeModalVisible] = useState(false);
     // State for the Email Detail Modal visibility and selected email
     const [emailDetailVisible, setEmailDetailVisible] = useState(false);
@@ -25,6 +26,11 @@ function Inbox() {
     const openComposeModal = () => setComposeModalVisible(true);
     const closeComposeModal = () => setComposeModalVisible(false);
 
+    const handleLogout = () => {
+        setUserId(null);
+        navigate('/');
+      };
+
     const openEmailDetailModal = (email) => {
         setSelectedEmail(email); // Set the selected email
         setEmailDetailVisible(true); // Show the detail modal
@@ -36,8 +42,13 @@ function Inbox() {
         <div className='container mt-5'>
             <Sidebar onCompose = {openComposeModal}/>
             <EmailTable data={dummyData} onEmailClick={openEmailDetailModal}/>
-            <ComposeModal onClose={closeComposeModal} visible={composeModalVisible} />
+            <ComposeModal userId={userId} setUserId={setUserId} onClose={closeComposeModal} visible={composeModalVisible} />
             <EmailDetailModal email={selectedEmail} onClose={closeEmailDetailModal} visible={emailDetailVisible} />
+            {showLogout && (
+        <button className="auth-button logout-button" onClick={handleLogout}>
+          Logout
+        </button>
+      )}
         </div>
     );
 }

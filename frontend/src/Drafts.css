@@ -2,3 +2,34 @@
     max-width: 600px;
     margin: 0 auto;
   }
+
+  .auth-button.logout-button {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+  }
+  
+  /* General button styles */
+  .auth-button {
+    font-size: 1rem;
+    padding: 0.15rem 1.5rem; /* Adjust padding to your preference */
+    border-radius: 0.3rem; /* Slightly rounded corners for a modern look */
+    margin: 0.1rem; /* Evenly space out buttons */
+    
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s; /* Smooth transition for hover effects */
+    color: white; /* White text for readability */
+    border: 2px solid transparent; /* No border for a clean look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+  }
+  
+  /* Styles specific to the login button */
+  .logout-button {
+    background-color: #6c757d; /* Bootstrap's gray color */
+    border-color: #6c757d; /* Same for the border to match */
+  }
+  
+  .logout-button:hover {
+    background-color: #5a6268; /* A darker shade on hover */
+    border-color: #5a6268; /* Match border color to background */
+  }

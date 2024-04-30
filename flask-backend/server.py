@@ -12,6 +12,35 @@ client = MongoClient("mongodb+srv://admin:capstone-proj-group-1@cluster0.ijebvxh
 db = client["Email-Chatbot"]
 
 # database schema
+if "drafts" not in db.list_collection_names():
+    db.create_collection("drafts")
+if "sent" not in db.list_collection_names():
+    db.create_collection("sent")
+if "inbox" not in db.list_collection_names():
+    db.create_collection("inbox")
+
+email_schema = {
+    "from": {"type": "string", "required": True},
+    "to": {"type": "string", "required": True},
+    "subject": {"type": "string", "required": True},
+    "body": {"type": "string", "required": True}
+}
+
+draft_schema = {
+    "user_id": {"type": "string", "required": True},
+    "emails": {"type": "list", "schema": email_schema}
+}
+
+sent_schema = {
+    "user_id": {"type": "string", "required": True},
+    "emails": {"type": "list", "schema": email_schema}
+}
+
+inbox_schema = {
+    "user_id": {"type": "string", "required": True},
+    "emails": {"type": "list", "schema": email_schema}
+}
+
 user_schema = {
     "name": {"type": "string", "required": True},
     "email": {"type": "string", "required": True},
@@ -23,14 +52,35 @@ user_schema = {
             "subject": {"type": "string", "required": True},
             "body": {"type": "string", "required": True}
         }
+    }},
+    "drafts": {"type": "list", "schema": {
+        "type": "dict",
+        "schema": {
+            "to": {"type": "string", "required": True},
+            "subject": {"type": "string", "required": True},
+            "body": {"type": "string", "required": True}
+        }
+    }},
+    "sent": {"type": "list", "schema": {
+        "type": "dict",
+        "schema": {
+            "from": {"type": "string", "required": True},
+            "to": {"type": "string", "required": True},
+            "subject": {"type": "string", "required": True},
+            "body": {"type": "string", "required": True}
+        }
+    }},
+    "inbox": {"type": "list", "schema": {
+        "type": "dict",
+        "schema": {
+            "from": {"type": "string", "required": True},
+            "to": {"type": "string", "required": True},
+            "subject": {"type": "string", "required": True},
+            "body": {"type": "string", "required": True}
+        }
     }}
 }
 
-email_schema = {
-    "to": {"type": "string", "required": True},
-    "subject": {"type": "string", "required": True},
-    "body": {"type": "string", "required": True}
-}
 # routes 
 
 # test route for debugging
@@ -69,6 +119,10 @@ def create_user():
         result = db.users.insert_one(data)
         inserted_id = str(result.inserted_id)
 
+        db.drafts.insert_one({"user_id": inserted_id, "emails": []})
+        db.sent.insert_one({"user_id": inserted_id, "emails": []})
+        db.inbox.insert_one({"user_id": inserted_id, "emails": []})
+
         return jsonify({'message': 'User registered successfully', 'user_id': inserted_id}), 201
 
     except Exception as e:
@@ -91,12 +145,39 @@ def login_user():
         if user['password'] != data['password']:
             return jsonify({'message': 'Incorrect password'}), 400
         
-        return jsonify({'message': 'Login successful'}), 200
+        return jsonify({'message': 'Login successful', 'user_id': str(user['_id'])}), 200
 
     except Exception as e:
         app.logger.error(f"Error logging in user: {str(e)}")
         return jsonify({'message': 'Error logging in user'}), 500
-    
+
+@app.route('/new-email-draft', methods=['POST'])
+def add_draft():
+    try:
+        data = request.json
+
+        if not data.get('user_id') or not data.get('email'):
+            return jsonify({'message': 'Missing user_id or email'}), 400
+
+        db.drafts.update_one({'user_id': data['user_id']}, {'$push': {'emails': data['email']}}, upsert=True)
+
+        return jsonify({'message': 'Draft added successfully'}), 200
+
+    except Exception as e:
+        app.logger.error(f"Error adding draft: {str(e)}")
+        return jsonify({'message': 'Error adding draft'}), 500
+
+@app.route('/drafts', methods=['GET'])
+def get_drafts():
+    try:
+        user_id = request.args.get('user_id')
+        drafts = db.drafts.find({"user_id": user_id})
+        draft_emails = [draft for draft in drafts]
+        return jsonify({'emails': draft_emails})
+    except Exception as e:
+        app.logger.error(f"Error fetching drafts: {str(e)}")
+        return jsonify({'message': 'Error fetching drafts'}), 500
+        
 # @app.route('/add-email', methods=['POST'])
 # def add_email():
 #     data = request.json

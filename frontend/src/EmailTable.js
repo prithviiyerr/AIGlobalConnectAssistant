@@ -25,8 +25,8 @@ function EmailTable({ data, onEmailClick }) { // Accept the onEmailClick prop
                 className="form-control mb-3"
             />
             <table className="table">
-                <thead>
-                </thead>
+                {/* <thead>
+                </thead> */}
                 <tbody>
                     {filteredData.map((item, index) => ( // Use filteredData here
                         <tr key={index} onClick={() => onEmailClick(item)}> {/* Add the click handler */}

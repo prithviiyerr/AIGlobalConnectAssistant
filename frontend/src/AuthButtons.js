@@ -4,7 +4,7 @@ import LoginModal from './LoginModal';
 
 import './AuthButtons.css';
 
-function AuthButtons() {
+function AuthButtons({ userId, setUserId }) {
   // const [isCreateAccountModalOpen, setIsCreateAccountModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
@@ -31,7 +31,7 @@ function AuthButtons() {
   return (
     <div className="auth-buttons-container">
       <button className='auth-button login-button' onClick={handleOpenLoginModal}>Login</button>
-      {isLoginModalOpen && <LoginModal onClose={handleCloseLoginModal}/>}
+      {isLoginModalOpen && <LoginModal userId={userId} setUserId={setUserId} onClose={handleCloseLoginModal}/>}
     </div>
   );
 }

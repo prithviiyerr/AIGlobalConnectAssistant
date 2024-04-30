@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Sidebar from './Sidebar';
 import ComposeModal from './ComposeModal';
+import { useNavigate } from 'react-router-dom';
 import './ChatbotDialogue.css';
 
 const systemMessage = {
@@ -8,8 +9,10 @@ const systemMessage = {
   content: "Explain all concepts like I'm a junior/mid-level web developer",
 };
 
-function ChatbotDialogue() {
+function ChatbotDialogue({ userId, setUserId, showLogout, setShowLogout }) {
+  const navigate = useNavigate();
   const API_KEY = "sk-proj-ZW5tKdt2qBFweMIZGKoyT3BlbkFJs3cLrXWZKG9Yqlmeq67F";
+  // const [showLogoutButton, setShowLogoutButton] = useState(true);
   const messagesEndRef = useRef(null);
   const [typing, setTyping] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -37,6 +40,10 @@ function ChatbotDialogue() {
     }
   };
 
+  const handleLogout = () => {
+    setUserId(null);
+    navigate('/');
+  };
 
   const handleSend = async (message) => {
     if (!inputValue.trim()) return; // Prevent sending empty messages
@@ -141,7 +148,15 @@ function ChatbotDialogue() {
         />
         <button className="btn" onClick={handleSend}>Send</button>
       </div>
+      {/* <div className="content"> */}
+      {/* <div className="auth-buttons-container"> */}
       <ComposeModal onClose={closeComposeModal} visible={composeModalVisible} />
+      {showLogout && (
+        <button className="auth-button logout-button" onClick={handleLogout}>
+          Logout
+        </button>
+      )}
+      {/* </div> */}
     </div>
   );
 }

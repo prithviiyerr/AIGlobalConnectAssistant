@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './CreateAccountModal.css'; // Custom CSS file for additional styling
 
-function LoginModal({ onClose }) {
+function LoginModal({userId, setUserId, onClose }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,14 +20,14 @@ function LoginModal({ onClose }) {
             email,
             password
           });
-          console.log(response.data);
+          console.log(response.data.message);
+          const user_id = response.data.user_id ? String(response.data.user_id) : null;
+          setUserId(user_id);
           setEmail('');
           setPassword('');
           navigate('/inbox');
-          
         } catch (error) {
           console.error(error);
-          console.error(error.response.data.message);
           if (error.response.data.message === 'Invalid username/password') {
               setNonExistingUserError(true);
               setInvalidFieldsError(false);
@@ -38,8 +38,7 @@ function LoginModal({ onClose }) {
               setNonExistingUserError(false);
           } else {
               console.error(error);
-          }
-        }
+          }}
       };
 
   return (

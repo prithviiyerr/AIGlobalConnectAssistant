@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './ComposeModal.css';
 
-function ComposeModal({ onClose, visible }) {
+function ComposeModal({ userId, setUserId, onClose, visible }) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState({ to: '', subject: '', body: '' });
 
   const handleChange = (e) => {
@@ -10,15 +13,24 @@ function ComposeModal({ onClose, visible }) {
   };
 
   const handleComposeWithAI = () => {
-    // Placeholder for AI composition logic
-    console.log('AI Compose not implemented yet');
+    navigate('/chatbot');
   };
 
-  const handleSaveDraft = () => {
-    // Placeholder for draft saving logic
+  const handleSaveDraft = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/new-email-draft', {
+        user_id: userId,
+        email,
+      });
+    console.log(response.data.message);
     console.log('Draft saved:', email);
     localStorage.setItem('draftEmail', JSON.stringify(email)); // Saving to local storage
+    setEmail({ to: '', subject: '', body: '' });
     onClose(); // Close the modal after saving the draft
+  } catch (error) {
+    console.error('Error saving draft:', error);
+    console.error(error.response.data.message);
+  }
   };
 
   const handleSubmit = (e) => {
