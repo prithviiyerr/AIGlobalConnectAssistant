@@ -1,14 +1,12 @@
 import React,{ useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import Home from './Home';
 import Inbox from './Inbox';
 import Trash from './Trash';
 import ChatbotDialogue from './ChatbotDialogue';
 import Sent from './Sent';
 import Drafts from './Drafts';
-import AuthButtons from './AuthButtons';
 
 function App() {
   const [userId, setUserId] = useState(null);

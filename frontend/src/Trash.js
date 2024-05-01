@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
-import Sidebar from './Sidebar';
 import EmailTable from './EmailTable';
-import ComposeModal from './ComposeModal';
-import EmailDetailModal from './EmailDetailModal';
+import ComposeModal from './Modals/ComposeModal';
+import EmailDetailModal from './Modals/EmailDetailModal';
 import { useNavigate } from 'react-router-dom';
-import './Trash.css';
+import './css/Trash.css';
+import NavigateApp from './Navigation/NavigateApp';
 
 function Trash({ userId, setUserId, showLogout, setShowLogout }) {
     const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = useState('');
     const [composeModalVisible, setComposeModalVisible] = useState(false);
     const [emailDetailVisible, setEmailDetailVisible] = useState(false);
     const [selectedEmail, setSelectedEmail] = useState(null);
 
     // Dummy data for trashed emails
     const trashedEmails = [
-        { id: 1, subject: "Vacation Request Approved", body: "Your vacation request has been approved. Enjoy your time off!" },
-        { id: 2, subject: "Your Order Confirmation", body: "Confirmation for your recent order. Thank you for shopping with us." },
+        { id: 1, sender: 'Luka Doncic', subject: "Vacation Request Approved", body: "Your vacation request has been approved. Enjoy your time off!" },
+        { id: 2, sender: 'Lebron James', subject: "Your Order Confirmation", body: "Confirmation for your recent order. Thank you for shopping with us." },
         // ... more trashed emails ...
     ];
 
@@ -54,26 +55,17 @@ function Trash({ userId, setUserId, showLogout, setShowLogout }) {
 
     return (
         <div className='container mt-5'>
-            <Sidebar />
-            <Sidebar onCompose={openComposeModal} />
-            <ComposeModal onClose={closeComposeModal} visible={composeModalVisible} />
-            <EmailTable data={trashedEmails} onEmailClick={openEmailDetailModal} />
-            {selectedEmail && emailDetailVisible && (
-                <EmailDetailModal
-                    email={selectedEmail}
-                    onClose={closeEmailDetailModal}
-                    visible={emailDetailVisible}
-                    onMoveToTrash={handlePermanentDelete} // You will need to define this function
-                    deleteLabel="Permanently Delete" // Custom label for the delete button
-                    onRestore={handleRestore}
-                    isTrashView={true}
-                />
-            )}
-            {showLogout && (
+            <NavigateApp onCompose={openComposeModal} setSearchTerm={setSearchTerm} />
+            <div>
+                <EmailTable data={trashedEmails} onEmailClick={openEmailDetailModal} searchTerm={searchTerm} />
+                <ComposeModal userId={userId} setUserId={setUserId} onClose={closeComposeModal} visible={composeModalVisible} />
+                <EmailDetailModal email={selectedEmail} onClose={closeEmailDetailModal} visible={emailDetailVisible} />
+            </div>
+            {/* {showLogout && (
         <button className="auth-button logout-button" onClick={handleLogout}>
           Logout
         </button>
-      )}
+      )} */}
         </div>
     );
 }

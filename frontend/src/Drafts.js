@@ -1,31 +1,27 @@
 // Drafts.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Sidebar from './Sidebar';
+import Sidebar from './Navigation/Sidebar';
 import EmailTable from './EmailTable';
-import ComposeModal from './ComposeModal';
-import EmailDetailModal from './EmailDetailModal';
+import ComposeModal from './Modals/ComposeModal';
+import EmailDetailModal from './Modals/EmailDetailModal';
 import { useNavigate } from 'react-router-dom';
-import './Drafts.css';
+import './css/Drafts.css';
+import NavigateApp from './Navigation/NavigateApp';
 
 function Drafts({ userId, setUserId, showLogout, setShowLogout }) {
     const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = useState('');
     const [composeModalVisible, setComposeModalVisible] = useState(false);
     const [showLogoutButton, setShowLogoutButton] = useState(true);
     const [emailDetailVisible, setEmailDetailVisible] = useState(false);
     const [selectedEmail, setSelectedEmail] = useState(null);
     const [draftEmails, setDraftEmails] = useState([]);
 
-    // Dummy data for drafts
-    // const draftEmails = [
-    //     { subject: "Drafted Email #1 Subject", body: "Drafted Email #1 Body" },
-
-    // ];
-
     const handleLogout = () => {
         setUserId(null);
         navigate('/');
-      };
+    };
 
     useEffect(() => {
         const fetchDrafts = async () => {
@@ -59,8 +55,7 @@ function Drafts({ userId, setUserId, showLogout, setShowLogout }) {
 
     return (
         <div className='container mt-5'>
-            <Sidebar />
-            <Sidebar onCompose={openComposeModal} />
+            <NavigateApp onCompose={openComposeModal} setSearchTerm={setSearchTerm} />
             <ComposeModal onClose={closeComposeModal} visible={composeModalVisible} />
             <EmailTable data={draftEmails} onEmailClick={openEmailDetailModal} />
             {selectedEmail && emailDetailVisible && (
@@ -70,11 +65,11 @@ function Drafts({ userId, setUserId, showLogout, setShowLogout }) {
                     visible={emailDetailVisible}
                 />
             )}
-            {showLogout && (
-        <button className="auth-button logout-button" onClick={handleLogout}>
-          Logout
-        </button>
-      )}
+            {/* {showLogout && (
+                <button className="auth-button logout-button" onClick={handleLogout}>
+                    Logout
+                </button>
+            )} */}
         </div>
     );
 }

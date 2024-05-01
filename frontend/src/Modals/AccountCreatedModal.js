@@ -1,5 +1,5 @@
 import React from 'react';
-import './AccountCreatedModal.css';
+import '../css/AccountCreatedModal.css';
 
 function AccountCreatedModal({ onClose }) {
   return (

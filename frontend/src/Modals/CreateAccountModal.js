@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './CreateAccountModal.css'; // Custom CSS file for additional styling
+import '../css/CreateAccountModal.css'; // Custom CSS file for additional styling
 
 function CreateAccountModal({ onClose, handleAccountCreated}) {
   const [name, setName] = useState('');
@@ -80,7 +80,7 @@ function CreateAccountModal({ onClose, handleAccountCreated}) {
             </div>
             <div className="row mb-3">
               <div className='col-3'></div>
-              <button className="btn btn-primary col-6" type="submit">Create</button>
+              <button className="btn btn-primary col-6" type="submit" style={{ backgroundColor: '#3b71ca'}}>Create</button>
             </div>
           </form>
           {submitted && invalidFieldsError &&

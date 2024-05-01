@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import Sidebar from './Sidebar';
 import EmailTable from './EmailTable';
-import ComposeModal from './ComposeModal';
-import EmailDetailModal from './EmailDetailModal';
+import ComposeModal from './Modals/ComposeModal';
+import EmailDetailModal from './Modals/EmailDetailModal';
 import { useNavigate } from 'react-router-dom';
-import './Sent.css';
+import './css/Sent.css';
+import NavigateApp from './Navigation/NavigateApp';
 
 function Sent({ userId, setUserId, showLogout, setShowLogout }) {
     const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = useState('');
     const [composeModalVisible, setComposeModalVisible] = useState(false);
     const [emailDetailVisible, setEmailDetailVisible] = useState(false);
     const [selectedEmail, setSelectedEmail] = useState(null);
 
     // Dummy data
     const sentEmails = [
-        { subject: "Sent Email #1", body: "Body of sent email #1" },
+        { sender: "To: John Smith", subject: "Progress Report", body: "Below I've attached a copy of my progress" },
     ];
 
     const openComposeModal = () => setComposeModalVisible(true);
@@ -24,7 +25,7 @@ function Sent({ userId, setUserId, showLogout, setShowLogout }) {
     const handleLogout = () => {
         setUserId(null);
         navigate('/');
-      };
+    };
 
     const openEmailDetailModal = (email) => {
         setSelectedEmail(email);
@@ -38,22 +39,17 @@ function Sent({ userId, setUserId, showLogout, setShowLogout }) {
 
     return (
         <div className='container mt-5'>
-            <Sidebar />
-            <Sidebar onCompose={openComposeModal} />
-            <ComposeModal onClose={closeComposeModal} visible={composeModalVisible} />
-            <EmailTable data={sentEmails} onEmailClick={openEmailDetailModal} isSentView={true} />
-            {selectedEmail && emailDetailVisible && (
-                <EmailDetailModal
-                    email={selectedEmail}
-                    onClose={closeEmailDetailModal}
-                    visible={emailDetailVisible}
-                />
-            )}
-            {showLogout && (
+            <NavigateApp onCompose={openComposeModal} setSearchTerm={setSearchTerm} />
+            <div>
+                <EmailTable data={sentEmails} onEmailClick={openEmailDetailModal} searchTerm={searchTerm} />
+                <ComposeModal userId={userId} setUserId={setUserId} onClose={closeComposeModal} visible={composeModalVisible} />
+                <EmailDetailModal email={selectedEmail} onClose={closeEmailDetailModal} visible={emailDetailVisible} />
+            </div>
+            {/* {showLogout && (
         <button className="auth-button logout-button" onClick={handleLogout}>
           Logout
         </button>
-      )}
+      )} */}
         </div>
     );
 }

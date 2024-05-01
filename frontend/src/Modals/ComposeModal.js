@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './ComposeModal.css';
+import '../css/ComposeModal.css';
+import '../css/EmailDetailModal.css';
 
 function ComposeModal({ userId, setUserId, onClose, visible }) {
   const navigate = useNavigate();
+
+  
   const [email, setEmail] = useState({ to: '', subject: '', body: '' });
+  const [chatbotVisible, setChatbotVisible] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,6 +18,13 @@ function ComposeModal({ userId, setUserId, onClose, visible }) {
 
   const handleComposeWithAI = () => {
     navigate('/chatbot');
+  };
+
+  const openChatbotModal = (email) => {
+    setChatbotVisible(true);
+  };
+  const closeChatbotModal = (email) => {
+    setChatbotVisible(false);
   };
 
   const handleSaveDraft = async () => {
@@ -46,8 +57,8 @@ function ComposeModal({ userId, setUserId, onClose, visible }) {
     <div className="compose-modal-overlay">
       <div className="compose-modal">
         <div className="compose-header">
-          <span className="compose-title">Compose an Email</span>
-          <button className="compose-close-button" onClick={onClose}>X</button>
+          <span className="compose-title text-success h4">Compose an Email</span>
+          <button className="email-detail-close-button" onClick={onClose}>X</button>
         </div>
         <form className="compose-form" onSubmit={handleSubmit}>
           <input
@@ -72,13 +83,15 @@ function ComposeModal({ userId, setUserId, onClose, visible }) {
             rows="4"
           />
           <div className="compose-actions">
-            <button type="button" onClick={handleComposeWithAI}>
-              Compose with AI Chatbot
-            </button>
-            <button type="button" onClick={handleSaveDraft}>
+           <button type="submit" style={{ color: 'white', backgroundColor: '#3b71ca'}}>Send</button>
+            {/* <button type="button" style={{ color: 'white', backgroundColor: '#3b71ca'}} onClick={handleComposeWithAI}>
+              Compose with Connnector
+            </button> */}
+
+            <button type="button" style={{ color: 'white', backgroundColor: '#3b71ca'}} onClick={handleSaveDraft}>
               Save as Draft
             </button>
-            <button type="submit">Send</button>
+            
           </div>
         </form>
       </div>

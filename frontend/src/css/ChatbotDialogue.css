@@ -1,7 +1,7 @@
 .chatbot-dialogue {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 50vh;
     max-width: 600px;
     margin: auto;
     border: 1px solid #ddd;

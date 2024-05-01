@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 // import CreateAccountModal from './CreateAccountModal';
-import LoginModal from './LoginModal';
+import LoginModal from './Modals/LoginModal';
 
-import './AuthButtons.css';
+import './css/AuthButtons.css';
 
 function AuthButtons({ userId, setUserId }) {
   // const [isCreateAccountModalOpen, setIsCreateAccountModalOpen] = useState(false);
@@ -29,8 +29,8 @@ function AuthButtons({ userId, setUserId }) {
   };
 
   return (
-    <div className="auth-buttons-container">
-      <button className='auth-button login-button' onClick={handleOpenLoginModal}>Login</button>
+    <div className="auth-buttons-container" style={{marginTop: '10px'}}>
+      <button className='auth-button login-button' onClick={handleOpenLoginModal} style={{ backgroundColor: '#3b71ca', border: 'none'}}>Login</button>
       {isLoginModalOpen && <LoginModal userId={userId} setUserId={setUserId} onClose={handleCloseLoginModal}/>}
     </div>
   );

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Sidebar from './Sidebar';
-import ComposeModal from './ComposeModal';
+import Sidebar from './Navigation/Sidebar';
+import ComposeModal from './Modals/ComposeModal';
 import { useNavigate } from 'react-router-dom';
-import './ChatbotDialogue.css';
+import './css/ChatbotDialogue.css';
 
 const systemMessage = {
   role: 'system',
-  content: "Explain all concepts like I'm a junior/mid-level web developer",
+  content: "Speak to me like a business professional with 5-10 years of experience",
 };
 
 function ChatbotDialogue({ userId, setUserId, showLogout, setShowLogout }) {
@@ -21,7 +21,7 @@ function ChatbotDialogue({ userId, setUserId, showLogout, setShowLogout }) {
   const closeComposeModal = () => setComposeModalVisible(false);
   const [messages, setMessages] = useState([
     {
-      message: "Hello, I'm ChatGPT! Ask me anything!",
+      message: "Hello! Ask me anything!",
       sentTime: 'just now',
       sender: 'ChatGPT',
     },

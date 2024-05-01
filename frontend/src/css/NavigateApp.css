@@ -1,0 +1,139 @@
+.navbar {
+    background-color: #f5f5f5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    height: 64px;
+}
+
+.navbar .nav-link {
+    color: #333;
+    /* Link text color */
+    padding: 20px;
+    /* Padding */
+    padding-left: 20px;
+    text-decoration: none;
+}
+
+.navbar .nav-link:hover {
+    background-color: #e9ecef;
+    /* Hover background color */
+}
+
+.navbar .nav-link.active {
+    background-color: white;
+    /* Active link background color */
+}
+
+.logo {
+    margin-left: 16px;
+    height: 48px;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    font-size: 32px;
+}
+
+.sidebar {
+    background-color: #f5f5f5;
+    width: 200px;
+    /* Sidebar width */
+    height: 100%;
+    /* Full height */
+    position: fixed;
+    /* Fixed position */
+    top: 64px;
+    /* Top position */
+    left: 0;
+    /* Left position */
+    overflow-x: hidden;
+}
+
+.sidebar .nav-link {
+    color: #3b71ca;
+    font-weight: 500;
+    padding-left: 20px;
+    text-decoration: none;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    width: 80%;
+    font-size: 18px;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #e9ecef;
+    /* Hover background color */
+}
+
+.sidebar .nav-link.active {
+    background-color: lightgray;
+    font-weight: bold;
+    /* Active link background color */
+}
+
+.layered-container {
+    position: relative;
+    z-index: 2;
+    /* Ensure the Navbar is above the Sidebar */
+}
+
+.sidebar-container {
+    /* Adjust according to Navbar height */
+    width: 250px;
+    /* Adjust Sidebar width */
+    float: left;
+    /* Ensure Sidebar floats left */
+    z-index: 1;
+    /* Sidebar is below Navbar */
+}
+
+.content-container {
+    margin-left: 250px;
+    /* Ensure content doesn't overlap with Sidebar */
+    /* Adjust according to Navbar height */
+    /* Add any additional styling for content container */
+}
+
+.settings-icon {
+    color: #3b71ca;
+    font-size: 36px;
+    margin-right: 16px;
+    position: relative;
+    top: -8px;
+}
+
+.search-icon {
+    border: none;
+    background-color: #f5f5f5;
+    font-size: 18px;
+    position: relative;
+    top: -2px;
+}
+
+.search-box {
+    border-radius: 8px;
+    border: 1px solid darkgray;
+    width: 512px;
+    height: 32px;
+    padding-left: 12px;
+}
+
+.compose-btn {
+    color: #3b71ca;
+    font-weight: 500;
+    margin-left: 40px;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    height: 48px;
+    text-decoration: none;
+    border-radius: 25px;
+    width: 80%;
+    font-size: 18px;
+    border: 1px solid darkgray;
+}
+
+.compose-btn:hover {
+    background-color: lightgray;
+    font-weight: bold;
+}
